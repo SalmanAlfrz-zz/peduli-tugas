@@ -38,7 +38,7 @@
 <button type="button" class="btn btn-link">Link</button></script></code></pre>
       <button type="button" class="btn btn-clipboard" data-clipboard-target="#defaultButton">copy</button>
     </figure>
-    
+
     <hr>
 
     <h4 id="inverse">Inverse Buttons</h4>
@@ -341,7 +341,7 @@
   </div>
   <div class="col-xl-2 content-nav-wrapper">
     <ul class="nav content-nav d-flex flex-column">
-    <li class="nav-item">
+      <li class="nav-item">
         <a href="#default" class="nav-link">Basic example</a>
       </li>
       <li class="nav-item">

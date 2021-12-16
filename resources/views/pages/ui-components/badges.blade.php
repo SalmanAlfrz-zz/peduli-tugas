@@ -47,7 +47,7 @@
 </button></script></code></pre>
       <button type="button" class="btn btn-clipboard" data-clipboard-target="#buttonBadge">copy</button>
     </figure>
-    
+
     <hr>
 
     <h4 id="positioned">Positioned</h4>
@@ -116,7 +116,7 @@
 <span class="badge bg-dark">Dark</span></script></code></pre>
       <button type="button" class="btn btn-clipboard" data-clipboard-target="#contextualVariations">copy</button>
     </figure>
-
+    
     <hr>
     
     <h4 id="pill-badges">Pill badges</h4>

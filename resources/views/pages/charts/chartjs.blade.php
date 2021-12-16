@@ -109,7 +109,7 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
+  <script src="{{ asset('assets/plugins/chartjs/chart.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')

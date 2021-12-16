@@ -4,7 +4,7 @@
 * Licensed under ThemeForest License
 */
 
-// Theme style for demo3 (Horizontal Menu - Light, Light-RTL, Dark-header)
+// Theme style for demo1 (Vertical Menu - Light, Light-RTL, Dark-sidebar)
 
 
 
@@ -75,8 +75,9 @@
 @import './spinner';
 
 // Layout
-@import './horizontal-wrapper';
+@import './vertical-wrapper';
 @import './navbar';
+@import './sidebar';
 @import './layouts';
 
 // Custom components

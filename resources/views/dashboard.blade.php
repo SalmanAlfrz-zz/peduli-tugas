@@ -422,7 +422,7 @@
 @endsection
 
 @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
+  <script src="{{ asset('assets/plugins/chartjs/chart.min.js') }}"></script>
   <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
   <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
   <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>

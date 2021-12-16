@@ -81,7 +81,7 @@
   <div class="col-md-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body d-flex flex-column align-items-center">
-        <p class="text-muted mb-3"> passing a parameter, you can execute something else for "Cancel"</p>
+        <p class="text-muted mb-3">passing a parameter, you can execute something else for "Cancel"</p>
         <button class="btn btn-primary" onclick="showSwal('passing-parameter-execute-cancel')">Click here!</button>
       </div>
     </div>
@@ -89,7 +89,7 @@
   <div class="col-md-4 grid-margin stretch-card">
     <div class="card">
       <div class="card-body d-flex flex-column align-items-center">
-      <p class="text-muted mb-3">A message with a custom image</p>
+        <p class="text-muted mb-3">A message with a custom image</p>
         <button class="btn btn-primary" onclick="showSwal('message-with-custom-image')">Click here!</button>
       </div>
     </div>
