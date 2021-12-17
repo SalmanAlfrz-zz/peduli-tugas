@@ -17,9 +17,15 @@ class CreateTugas extends Migration
             $table->bigIncrements('id');
             $table->longText('nama');
             $table->dateTime('deadline');
-            $table->char('jenis', 50);
-            $table->float('bobot');
-            $table->char('status', 50);
+
+            // $table->set('jenis', ['Individu', 'Kelompok']);
+            // $table->set('bobot', ['Mudah', 'Sedang', 'Sulit']);
+
+            $table->integer('jenis');
+            $table->integer('bobot');
+
+            $table->set('status', ['Selesai', 'Belum Selesai']);
+
             $table->foreignId('user_id');
             $table->timestamps();
         });

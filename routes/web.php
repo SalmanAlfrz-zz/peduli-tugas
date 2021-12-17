@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/', 'TugasController@showTugas');
+
 Route::group(['prefix' => 'email'], function(){
     Route::get('inbox', function () { return view('pages.email.inbox'); });
     Route::get('read', function () { return view('pages.email.read'); });

@@ -20,7 +20,7 @@
     </button>
     <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
       <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-      Download Report
+      Tambah Tugas
     </button>
   </div>
 </div>
@@ -49,14 +49,33 @@
             <thead>
               <tr>
                 <th class="pt-0">#</th>
-                <th class="pt-0">Project Name</th>
-                <th class="pt-0">Start Date</th>
-                <th class="pt-0">Due Date</th>
-                <th class="pt-0">Status</th>
-                <th class="pt-0">Assign</th>
+                <th class="pt-0">Nama Tugas</th>
+                <th class="pt-0">Deadline</th>
+                <th class="pt-0">Jenis</th>
+                <th class="pt-0">Kesulitan Tugas</th>
+                <th class="pt-0">Prioritas Tugas</th>
+                <th class="pt-0"></th>
               </tr>
             </thead>
             <tbody>
+              @foreach($tugas as $t)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $t->nama }}</td>
+                <td>{{ $t->deadline }}</td>
+                <td>{{ $t->jenis }}</td>
+                <td>{{ $t->bobot }}</td>
+                <td>{{ $t->status }}</td>
+                <td>
+                  <a href="">
+                    <i data-feather="edit-2" class="icon-sm me-2"><span>Edit</span></i>
+                  </a>
+                  <a href="">
+                    <i data-feather="trash" class="icon-sm me-2"><span>Hapus</span></i>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
               <tr>
                 <td>1</td>
                 <td>NobleUI jQuery</td>
