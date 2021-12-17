@@ -2,9 +2,20 @@
 
 @push('plugin-styles')
 <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
 @endpush
 
+@section('script')
+@if(Session::has('success'))
+  $(document).load(function() {
+    showSwal('deleteSuccess');
+  });
+{{-- <button onclick="showSwal('deleteSuccess')"></button> --}}
+@endif
+@endsection
+
 @section('content')
+
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
   <div>
     <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
@@ -25,7 +36,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row mb-4">
   <div class="col-lg-11 col-xl-12 stretch-card">
     <div class="card">
       <div class="card-body">
@@ -63,76 +74,56 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $t->nama }}</td>
                 <td>{{ $t->deadline }}</td>
-                <td>{{ $t->jenis }}</td>
-                <td>{{ $t->bobot }}</td>
-                <td>{{ $t->status }}</td>
                 <td>
-                  <a href="">
-                    <i data-feather="edit-2" class="icon-sm me-2"><span>Edit</span></i>
-                  </a>
-                  <a href="">
-                    <i data-feather="trash" class="icon-sm me-2"><span>Hapus</span></i>
-                  </a>
+                  @if($t->jenis == 1)
+                  individu
+                  @elseif($t->jenis == 2)
+                  kelompok
+                  @else
+                  {{ $t->jenis }}
+                  @endif
+                </td>
+                <td>
+                  @if($t->bobot == 3)
+                  Mudah
+                  @elseif($t->bobot == 2)
+                  Sedang
+                  @elseif($t->bobot == 1)
+                  sulit
+                  @else
+                  {{ $t->bobot }}
+                  @endif
+                </td>
+                <td>
+                  @if($t->priority_value <= 2.25 && $t->status == "Belum Selesai")
+                  <span class="badge bg-danger">Sangat Penting</span>
+                  @elseif($t->priority_value > 2.25 && $t->priority_value < 4.6 && $t->status == "Belum Selesai")
+                  <span class="badge bg-warning">Penting</span>
+                  @elseif($t->priority_value >= 4.6 && $t->status == "Belum Selesai")
+                  <span class="badge bg-success">Kurang Penting</span>
+                  @elseif($t->status == "Selesai")
+                  <span class="badge bg-primary">Sudah Selesai</span>
+                  @endif
+                </td>
+                <td>
+                  {{-- {{ $t->priority_value }} --}}
+                  <div class="dropdown mb-2">
+                    <button class="btn p-0" type="button" id="dropdownMenuButton8" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton8">
+                      @if($t->status == "Belum Selesai")
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"></i><span class="">Tandai Selesai</span></a>
+                      @elseif($t->status == "Selesai")
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
+                      @endif
+                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><span class="">Ubah</span></a>
+                      <a class="dropdown-item d-flex align-items-center" href="/hapus/{{ $t->id }}"><span class="">Hapus</span></a>
+                    </div>
+                  </div>
                 </td>
               </tr>
               @endforeach
-              <tr>
-                <td>1</td>
-                <td>NobleUI jQuery</td>
-                <td>01/01/2021</td>
-                <td>26/04/2021</td>
-                <td><span class="badge bg-danger">Released</span></td>
-                <td>Leonardo Payne</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>NobleUI Angular</td>
-                <td>01/01/2021</td>
-                <td>26/04/2021</td>
-                <td><span class="badge bg-success">Review</span></td>
-                <td>Carl Henson</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>NobleUI ReactJs</td>
-                <td>01/05/2021</td>
-                <td>10/09/2021</td>
-                <td><span class="badge bg-info">Pending</span></td>
-                <td>Jensen Combs</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>NobleUI VueJs</td>
-                <td>01/01/2021</td>
-                <td>31/11/2021</td>
-                <td><span class="badge bg-warning">Work in Progress</span>
-                </td>
-                <td>Amiah Burton</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>NobleUI Laravel</td>
-                <td>01/01/2021</td>
-                <td>31/12/2021</td>
-                <td><span class="badge bg-danger">Coming soon</span></td>
-                <td>Yaretzi Mayo</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>NobleUI NodeJs</td>
-                <td>01/01/2021</td>
-                <td>31/12/2021</td>
-                <td><span class="badge bg-primary">Coming soon</span></td>
-                <td>Carl Henson</td>
-              </tr>
-              <tr>
-                <td class="border-bottom">3</td>
-                <td class="border-bottom">NobleUI EmberJs</td>
-                <td class="border-bottom">01/05/2021</td>
-                <td class="border-bottom">10/11/2021</td>
-                <td class="border-bottom"><span class="badge bg-info">Pending</span></td>
-                <td class="border-bottom">Jensen Combs</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -545,9 +536,11 @@
 <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/progressbar-js/progressbar.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 @endpush
 
 @push('custom-scripts')
 <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 <script src="{{ asset('assets/js/datepicker.js') }}"></script>
+<script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 @endpush

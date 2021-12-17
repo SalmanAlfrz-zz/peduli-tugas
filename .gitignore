@@ -9,3 +9,5 @@ Homestead.yaml
 .env
 cmd.exe
 php artisan serve.exe
+cmd.exe.lnk
+php artisan serve.exe.lnk
