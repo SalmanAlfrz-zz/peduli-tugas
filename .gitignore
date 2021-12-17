@@ -1,2 +1,11 @@
 
 .env
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+omestead.json
+Homestead.yaml
+.env
+cmd.exe
+php artisan serve.exe
