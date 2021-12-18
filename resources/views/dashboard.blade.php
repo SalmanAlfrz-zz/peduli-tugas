@@ -247,7 +247,6 @@
                           </div>
                         </div>
                       </div>
-<<<<<<< Updated upstream
 
                       <!-- Hapus Tugas Modal -->
                       <div class="modal fade" id="exampleModalCenter{{ $t->id }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
