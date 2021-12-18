@@ -12,12 +12,15 @@
 */
 
 Route::get('/', function () {
+    session()->flash('success', 'Data berhasil dihapus');
     return view('dashboard');
 });
 
 Route::get('/', 'TugasController@showTugas');
 
 Route::get('/hapus/{id}', 'TugasController@removeTugas');
+
+Route::post('/tambah', 'TugasController@insertTugas');
 
 Route::group(['prefix' => 'email'], function(){
     Route::get('inbox', function () { return view('pages.email.inbox'); });

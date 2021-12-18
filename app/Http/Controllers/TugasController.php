@@ -24,4 +24,20 @@ class TugasController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
+
+    public function insertTugas(Request $request)
+    {
+       DB::table('t_tugas')->insert([
+        'nama' => $request->judulTugas,
+        'deadline' => date('Y-m-d H:i:s', strtotime($request->deadline)),
+        'jenis' => $request->jenisTugas,
+        'bobot' => $request->bobotTugas,
+        'status' => "Belum Selesai",
+        'user_id' => "1",
+        'created_at' => date('Y-m-d H:i:s', time()),
+        'updated_at' => date('Y-m-d H:i:s', time())
+       ]);
+
+       return redirect()->back()->with('success', 'Data berhasil ditambah');
+    }
 }
