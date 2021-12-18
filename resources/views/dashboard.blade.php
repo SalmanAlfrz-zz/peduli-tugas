@@ -7,41 +7,13 @@
 @endpush
 
 @section('content')
-<script src="https://code.jquery.com/jquery-3.6.0.js">
-  @if(Session::has('success'))
-  swal("Hey", "Sdas", "success")
-  Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  }).fire({
-    icon: 'success',
-    title: 'Nice Cock'
-  })
-  $(function (){
-    showSwal('deleteSuccess');
-  })
-  @endif
-</script>
 
 @if(Session::has('success'))
-<script src="https://code.jquery.com/jquery-3.6.0.js">
-  swal("Hey", "Sdas", "success")
-  Swal.fire(
-    'Good job',
-    '{{ session('success') }}',
-    'mixin')
-  $(function (){
-    showSwal('deleteSuccess');
-  })
-</script>
-<button onclick="showSwal('deleteSuccess')"></button>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <i data-feather="check-circle"></i>
+  {{ session('success') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
+</div>
 @endif
 
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
