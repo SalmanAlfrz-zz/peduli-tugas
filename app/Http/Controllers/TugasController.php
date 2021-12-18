@@ -42,4 +42,11 @@ class TugasController extends Controller
 
        return redirect()->back()->with('success', 'Data berhasil ditambah');
     }
+
+    public function updateTugas(Request $request, $id)
+    {
+        DB::table('t_tugas')->where('id', $request->id)->update([
+
+        ]);
+    }
 }

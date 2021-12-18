@@ -56,7 +56,7 @@
               <div class="mb-3">
                 <div class="row">
                   <div class="col-6">
-                    <label class="form-label">Waktu Deadline</label>
+                    <label class="form-label">Tanggal Deadline</label>
                     <div class="input-group date datepicker" id="datePickerExample">
                       <input type="text" class="form-control" name="deadlineDate">
                       <span class="input-group-text input-group-addon"><i data-feather="calendar"></i></span>
@@ -70,13 +70,6 @@
                       <span class="input-group-text" data-target="#datetimepickerExample" data-toggle="datetimepicker"><i data-feather="clock"></i></span>
                     </div>
                   </div>
-
-                  {{-- <label class="form-label">Waktu Deadline</label>
-                  <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">
-                    <input class="form-control mb-4 mb-md-0" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy HH:MM:ss" name="deadline" placeholder="dd-mm-yyyy HH:MM:ss" />
-                    <span class="input-group-text"><i data-feather="clock"></i></span>
-                  </div> --}}
-
                 </div>
               </div>
               <div class="mb-3">
@@ -104,6 +97,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -188,11 +182,85 @@
                         @elseif($t->status == "Selesai")
                         <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
                           @endif
-                          <a class="dropdown-item d-flex align-items-center" href="javascript:;"><span class="">Ubah</span></a>
-                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{ $t->id }}"><span class="">Hapus</span></a>
+                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#updateDataModal{{ $t->id }}"><span class="">Ubah</span></a>
+                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#updateDataModal{{ $t->id }}"><span class="">Hapus</span></a>
                         </div>
                       </div>
                     </td>
+
+                    {{-- Update Data Modal --}}
+                    <div class="modal fade" id="updateDataModal{{ $t->id }}" tabindex="-1" aria-labelledby="varyingModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="varyingModalLabel">Ubah Tugas</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                          </div>
+                          <div class="modal-body">
+
+                            <form method="POST" action="/ubah/{{ $t->id }}">
+                              @csrf
+                              <div class="mb-3">
+                                <label class="form-label">Judul Tugas</label>
+                                <input class="form-control" type="text" name="judulTugas" placeholder="Ex: Tugas Matematika Dasar" required value="{{ $t->nama }}">
+                              </div>
+                              <div class="mb-3">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <label class="form-label">Tanggal Deadline</label>
+                                    <div class="input-group date datepicker" id="datePickerExample{{ $t->id }}">
+                                      <input type="text" class="form-control" name="deadlineDate" value="{{ date('Y-m-d', strtotime($t->deadline)) }}">
+                                      <span class="input-group-text input-group-addon" data-target="#datePickerExample{{ $t->id }}"><i data-feather="calendar"></i></span>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-6">
+                                    <label class="form-label">Waktu Deadline</label>
+                                    <div class="input-group date timepicker" id="datetimepickerExample{{ $t->id }}" data-target-input="nearest">
+                                      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerExample{{ $t->id }}" name="deadlineTime" value="{{ date('h:i A', strtotime($t->deadline)) }}"/>
+                                      <span class="input-group-text" data-target="#datetimepickerExample{{ $t->id }}" data-toggle="datetimepicker"><i data-feather="clock"></i></span>
+                                    </div>
+                                  </div>
+
+
+                                  <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js') }}"></script>
+                                  <script src="{{ asset('assets/js/timepicker.js') }}"></script>
+                                 {{--  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> --}}
+                                  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js">
+                                    $(function (){
+                                      $('#datetimepicker{{ $t->id }}').datetimepicker({
+                                        format: 'LT'
+                                      });
+                                    });
+                                  </script>
+
+                                </div>
+                              </div>
+                              <div class="mb-3">
+                                <label class="form-label">Jenis Tugas</label>
+                                <select class="form-select" multiple="multiple" data-width="100%" name="jenisTugas" required>
+                                  <option value="1" {{ $t->jenis == '1' ? 'selected' : '' }}>Individu</option>
+                                  <option value="2" {{ $t->jenis == '2' ? 'selected' : '' }}>Kelompok</option>
+                                </select>
+                              </div>
+                              <div class="mb-3">
+                                <label class="form-label">Tingkat Kesulitan</label>
+                                <select class="form-select" multiple="multiple" data-width="100%" name="bobotTugas" required>
+                                  <option value="1">Sulit</option>
+                                  <option value="2">Sedang</option>
+                                  <option value="3">Mudah</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <input class="btn btn-primary" type="submit" value="Tambah">
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter{{ $t->id }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
