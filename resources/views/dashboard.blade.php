@@ -154,7 +154,7 @@
                   @elseif($t->bobot == 2)
                   Sedang
                   @elseif($t->bobot == 1)
-                  sulit
+                  Sulit
                   @else
                   {{ $t->bobot }}
                   @endif
