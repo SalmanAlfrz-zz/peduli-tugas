@@ -20,6 +20,10 @@ Route::get('/', 'TugasController@showTugas');
 
 Route::get('/hapus/{id}', 'TugasController@removeTugas');
 
+Route::get('/tandaiSelesai/{id}', 'TugasController@selesaiTugas');
+
+Route::get('/tandaiBelumSelesai/{id}', 'TugasController@batalSelesaiTugas');
+
 Route::post('/tambah', 'TugasController@insertTugas');
 
 Route::post('/ubah/{id}', 'TugasController@updateTugas');

@@ -18,9 +18,20 @@ class TugasController extends Controller
         return view('dashboard', ['tugas' => $tugas]);
     }
 
+    public function showTugasWithDone(){
+        $tugas = DB::table('t_tugas')
+            ->select(DB::raw('*, jenis * 15/100 + bobot * 25/100 + (timestampdiff(minute, now(), deadline) / 1440) * 60/100 as priority_value'))
+            ->orderBy('priority_value', 'asc')
+            ->orderBy('status', 'desc')
+            ->where('user_id', 1)
+            ->get();
+
+        return view('dashboard', ['tugas' => $tugas]);
+    }
+
     public function removeTugas($id)
     {
-        // DB::table('t_tugas')->where('id', $id)->delete();
+        DB::table('t_tugas')->where('id', $id)->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
@@ -54,5 +65,25 @@ class TugasController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Data berhasil diubah');
+    }
+
+    public function selesaiTugas($id)
+    {
+        DB::table('t_tugas')->where('id', $id)->update([
+            'status' => "Selesai",
+            'updated_at' => date('Y-m-d H:i:s', time())
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function batalSelesaiTugas($id)
+    {
+        DB::table('t_tugas')->where('id', $id)->update([
+            'status' => "Belum Selesai",
+            'updated_at' => date('Y-m-d H:i:s', time())
+        ]);
+
+        return redirect()->back();
     }
 }

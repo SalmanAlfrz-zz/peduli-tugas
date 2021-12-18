@@ -175,9 +175,9 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton8">
                         @if($t->status == "Belum Selesai")
-                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"></i><span class="">Tandai Selesai</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="/tandaiSelesai/{{ $t->id }}"></i><span class="">Tandai Selesai</span></a>
                         @elseif($t->status == "Selesai")
-                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
+                        <a class="dropdown-item d-flex align-items-center" href="/tandaiBelumSelesai/{{ $t->id }}"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
                           @endif
                           <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#updateDataModal{{ $t->id }}"><span class="">Ubah</span></a>
                           <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{ $t->id }}"><span class="">Hapus</span></a>
@@ -248,7 +248,7 @@
                         </div>
                       </div>
 
-                      <!-- Modal -->
+                      <!-- Hapus Tugas Modal -->
                       <div class="modal fade" id="exampleModalCenter{{ $t->id }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
@@ -264,9 +264,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                               <input type="button" class="btn btn-primary" onclick="location.href='/hapus/{{ $t->id }}'" value="Hapus">
-                              {{-- <a href="/hapus/{{ $t->id }}" class="btn btn-primrary" style="appearance: button">Hapus</a> --}}
                             </div>
                           </div>
                         </div>
