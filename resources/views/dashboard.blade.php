@@ -55,39 +55,56 @@
               </div>
               <div class="mb-3">
                 <div class="row">
-                 <label class="form-label">Waktu Deadline</label>
-                 <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">
-                  <input class="form-control mb-4 mb-md-0" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy HH:MM:ss" name="deadline" placeholder="dd-mm-yyyy HH:MM:ss" />
-                  <span class="input-group-text"><i data-feather="clock"></i></span>
+                  <div class="col-6">
+                    <label class="form-label">Waktu Deadline</label>
+                    <div class="input-group date datepicker" id="datePickerExample">
+                      <input type="text" class="form-control" name="deadlineDate">
+                      <span class="input-group-text input-group-addon"><i data-feather="calendar"></i></span>
+                    </div>
+                  </div>
+
+                  <div class="col-6">
+                    <label class="form-label">Waktu Deadline</label>
+                    <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerExample" name="deadlineTime"/>
+                      <span class="input-group-text" data-target="#datetimepickerExample" data-toggle="datetimepicker"><i data-feather="clock"></i></span>
+                    </div>
+                  </div>
+
+                  {{-- <label class="form-label">Waktu Deadline</label>
+                  <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">
+                    <input class="form-control mb-4 mb-md-0" data-inputmask="'alias': 'datetime'" data-inputmask-inputformat="dd-mm-yyyy HH:MM:ss" name="deadline" placeholder="dd-mm-yyyy HH:MM:ss" />
+                    <span class="input-group-text"><i data-feather="clock"></i></span>
+                  </div> --}}
+
                 </div>
               </div>
+              <div class="mb-3">
+                <label class="form-label">Jenis Tugas</label>
+                <select class="form-select" multiple="multiple" data-width="100%" name="jenisTugas" required>
+                  <option value="1">Individu</option>
+                  <option value="2">Kelompok</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Tingkat Kesulitan</label>
+                <select class="form-select" multiple="multiple" data-width="100%" name="bobotTugas" required>
+                  <option value="1">Sulit</option>
+                  <option value="2">Sedang</option>
+                  <option value="3">Mudah</option>
+                </select>
+              </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Jenis Tugas</label>
-              <select class="form-select" multiple="multiple" data-width="100%" name="jenisTugas" required>
-                <option value="1">Individu</option>
-                <option value="2">Kelompok</option>
-              </select>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <input class="btn btn-primary" type="submit" value="Tambah">
             </div>
-            <div class="mb-3">
-              <label class="form-label">Tingkat Kesulitan</label>
-              <select class="form-select" multiple="multiple" data-width="100%" name="bobotTugas" required>
-                <option value="1">Sulit</option>
-                <option value="2">Sedang</option>
-                <option value="3">Mudah</option>
-              </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <input class="btn btn-primary" type="submit" value="Tambah">
-          </div>
-        </form>
+          </form>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="row mb-4">
@@ -172,10 +189,35 @@
                         <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
                           @endif
                           <a class="dropdown-item d-flex align-items-center" href="javascript:;"><span class="">Ubah</span></a>
-                          <a class="dropdown-item d-flex align-items-center" href="/hapus/{{ $t->id }}"><span class="">Hapus</span></a>
+                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{ $t->id }}"><span class="">Hapus</span></a>
                         </div>
                       </div>
                     </td>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter{{ $t->id }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                          </div>
+                          <div class="d-flex justify-content-center mt-3">
+                            <i class="text-muted" data-feather="alert-circle" style="width: 72px; height: 72px;"></i>
+                          </div>
+                          <div class="modal-body d-flex justify-content-center">
+                            <label>Apakah kamu yakin? Data Tugas <b>{{ $t->nama }}</b> yang terhapus akan hilang selamanya. </label>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                            <input type="button" class="btn btn-primary" onclick="location.href='/hapus/{{ $t->id }}'" value="Hapus">
+                            {{-- <a href="/hapus/{{ $t->id }}" class="btn btn-primrary" style="appearance: button">Hapus</a> --}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   </tr>
                   @endforeach
                 </tbody>
@@ -588,7 +630,7 @@
     @endsection
 
     @push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/inputmask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/chartjs/chart.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
     <script src="{{ asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
@@ -602,7 +644,7 @@
     @endpush
 
     @push('custom-scripts')
-  <script src="{{ asset('assets/js/inputmask.js') }}"></script>
+    <script src="{{ asset('assets/js/inputmask.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/datepicker.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
