@@ -183,7 +183,7 @@
                         <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="x-circle" class="icon-sm me-2"><span class="">Tandai Belum Selesai</span></a>
                           @endif
                           <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#updateDataModal{{ $t->id }}"><span class="">Ubah</span></a>
-                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#updateDataModal{{ $t->id }}"><span class="">Hapus</span></a>
+                          <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModalCenter{{ $t->id }}"><span class="">Hapus</span></a>
                         </div>
                       </div>
                     </td>
