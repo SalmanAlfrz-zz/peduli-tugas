@@ -22,7 +22,7 @@ Route::get('/hapus/{id}', 'TugasController@removeTugas');
 
 Route::post('/tambah', 'TugasController@insertTugas');
 
-Route::post('/ubah', 'TugasController@insertTugas');
+Route::post('/ubah/{id}', 'TugasController@updateTugas');
 
 Route::group(['prefix' => 'email'], function(){
     Route::get('inbox', function () { return view('pages.email.inbox'); });

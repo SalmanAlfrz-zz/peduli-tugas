@@ -10,7 +10,7 @@ class TugasController extends Controller
 {
     public function showTugas(){
         $tugas = DB::table('t_tugas')
-            ->select(DB::raw('*, (jenis * 15/100 + bobot * 25/100 + (ABS(timestampdiff(minute, deadline, now()) / 1440) * 60/100)) as priority_value'))
+            ->select(DB::raw('*, jenis * 15/100 + bobot * 25/100 + (timestampdiff(minute, now(), deadline) / 1440) * 60/100 as priority_value'))
             ->orderBy('priority_value', 'asc')
             ->where('user_id', 1)
             ->get();
@@ -20,7 +20,7 @@ class TugasController extends Controller
 
     public function removeTugas($id)
     {
-        DB::table('t_tugas')->where('id', $id)->delete();
+        // DB::table('t_tugas')->where('id', $id)->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
@@ -45,8 +45,14 @@ class TugasController extends Controller
 
     public function updateTugas(Request $request, $id)
     {
-        DB::table('t_tugas')->where('id', $request->id)->update([
-
+        DB::table('t_tugas')->where('id', $id)->update([
+            'nama' => $request->judulTugas,
+            'deadline' => date('Y-m-d H:i:s', strtotime($request->deadline)),
+            'jenis' => $request->jenisTugas,
+            'bobot' => $request->bobotTugas,
+            'updated_at' => date('Y-m-d H:i:s', time())
         ]);
+
+        return redirect()->back()->with('success', 'Data berhasil diubah');
     }
 }
