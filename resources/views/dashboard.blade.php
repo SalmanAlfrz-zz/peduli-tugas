@@ -266,33 +266,9 @@
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               <input type="button" class="btn btn-primary" onclick="location.href='/hapus/{{ $t->id }}'" value="Hapus">
                             </div>
-=======
-                    </div>
- 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter{{ $t->id }}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-                          </div>
-                          <div class="d-flex justify-content-center mt-3">
-                            <i class="text-muted" data-feather="alert-circle" style="width: 72px; height: 72px;"></i>
-                          </div>
-                          <div class="modal-body d-flex justify-content-center">
-                            <label>Apakah kamu yakin? Data Tugas <b>{{ $t->nama }}</b> yang terhapus akan hilang selamanya. </label>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                            <input type="button" class="btn btn-primary" onclick="location.href='/hapus/{{ $t->id }}'" value="Hapus">
-                            {{-- <a href="/hapus/{{ $t->id }}" class="btn btn-primrary" style="appearance: button">Hapus</a> --}}
->>>>>>> Stashed changes
                           </div>
                         </div>
                       </div>
-
                     </tr>
                     @endforeach
                   </tbody>
