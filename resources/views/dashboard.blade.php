@@ -33,68 +33,6 @@
       <i class="btn-icon-prepend" data-feather="download-cloud"></i>
       Tambah Tugas
     </button>
-
-    {{-- Add Data Modal --}}
-    <div class="modal fade" id="addDataModal" tabindex="-1" aria-labelledby="varyingModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="varyingModalLabel">Tambah Tugas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
-          </div>
-          <div class="modal-body">
-
-            <form method="POST" action="/tambah">
-              @csrf
-              <div class="mb-3">
-                <label class="form-label">Judul Tugas</label>
-                <input class="form-control" type="text" name="judulTugas" placeholder="Ex: Tugas Matematika Dasar" required>
-              </div>
-              <div class="mb-3">
-                <div class="row">
-                  <div class="col-6">
-                    <label class="form-label">Tanggal Deadline</label>
-                    <div class="input-group date datepicker" id="datePickerExample">
-                      <input type="text" class="form-control" name="deadlineDate">
-                      <span class="input-group-text input-group-addon"><i data-feather="calendar"></i></span>
-                    </div>
-                  </div>
-
-                  <div class="col-6">
-                    <label class="form-label">Waktu Deadline</label>
-                    <div class="input-group date timepicker" id="datetimepickerExample" data-target-input="nearest">
-                      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepickerExample" name="deadlineTime"/>
-                      <span class="input-group-text" data-target="#datetimepickerExample" data-toggle="datetimepicker"><i data-feather="clock"></i></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Jenis Tugas</label>
-                <select class="form-select" multiple="multiple" data-width="100%" name="jenisTugas" required>
-                  <option value="1">Individu</option>
-                  <option value="2">Kelompok</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Tingkat Kesulitan</label>
-                <select class="form-select" multiple="multiple" data-width="100%" name="bobotTugas" required>
-                  <option value="1">Sulit</option>
-                  <option value="2">Sedang</option>
-                  <option value="3">Mudah</option>
-                </select>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <input class="btn btn-primary" type="submit" value="Tambah">
-            </div>
-          </form>
-
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
